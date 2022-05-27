@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { joiResolver } from "@hookform/resolvers/joi";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { AddressStepProps } from "./types";
 import { InputGroup } from "../../../../../molecules/InputGroup/InputGroup";
 
@@ -27,29 +27,83 @@ const formSchema = Joi.object({
   city: Joi.string().required(),
 });
 
-const AddressStep = ({}: AddressStepProps): JSX.Element => {
+const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
   const {
     handleSubmit,
     formState: { errors },
-    register,
+    control,
   } = useForm<TData>({
     resolver: joiResolver(formSchema),
   });
 
-  const _handleSubmit = () => {};
+  const _handleSubmit = () => {
+    submitFnc();
+  };
 
   return (
     <div>
       <h1>Address step :</h1>
 
       <form onSubmit={handleSubmit(_handleSubmit)}>
-        <InputGroup type="text" {...register("number")} />
+        <Controller
+          name="number"
+          control={control}
+          render={({ field: { name, value, onChange } }): JSX.Element => (
+            <InputGroup
+              type="text"
+              label="Number"
+              error={errors["number"]?.message}
+              name={name}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
 
-        <InputGroup type="text" {...register("street")} />
+        <Controller
+          name="number"
+          control={control}
+          render={({ field: { name, value, onChange } }): JSX.Element => (
+            <InputGroup
+              type="text"
+              label="Street"
+              error={errors["street"]?.message}
+              name={name}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
 
-        <InputGroup type="text" {...register("city")} />
+        <Controller
+          name="number"
+          control={control}
+          render={({ field: { name, value, onChange } }): JSX.Element => (
+            <InputGroup
+              type="text"
+              label="City"
+              error={errors["city"]?.message}
+              name={name}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
 
-        <InputGroup type="text" {...register("postalCode")} />
+        <Controller
+          name="number"
+          control={control}
+          render={({ field: { name, value, onChange } }): JSX.Element => (
+            <InputGroup
+              type="text"
+              label="PostalCode"
+              error={errors["postalCode"]?.message}
+              name={name}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
 
         <button type="submit">SUBMIT</button>
       </form>

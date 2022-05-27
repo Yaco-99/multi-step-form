@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import { InputGroupProps } from "./types";
 
 export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
-  ({ label, cornerText, helperText, value, ...props }, ref) => {
+  ({ label, cornerText, helperText, value, error, ...props }, ref) => {
     return (
       <div>
         <div>
@@ -13,7 +13,9 @@ export const InputGroup = forwardRef<HTMLInputElement, InputGroupProps>(
 
         <input {...props} ref={ref} value={value} />
 
-        {helperText && <span>{helperText}</span>}
+        {helperText && <p>{helperText}</p>}
+
+        {error && <p>{error}</p>}
       </div>
     );
   }

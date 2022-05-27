@@ -7,7 +7,11 @@ const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
 
   switch (step) {
     case 0:
-      return <AddressStep />;
+      return (
+        <AddressStep submitFnc={() => setStep((current) => current + 1)} />
+      );
+    case 1:
+      return <h1>Second step</h1>;
     default:
       throw new Error(`step ${step} does not exist`);
   }

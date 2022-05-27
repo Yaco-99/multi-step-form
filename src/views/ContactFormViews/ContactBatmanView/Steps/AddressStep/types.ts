@@ -1,1 +1,3 @@
-export type AddressStepProps = {};
+export type AddressStepProps = {
+  submitFnc: () => void;
+};
