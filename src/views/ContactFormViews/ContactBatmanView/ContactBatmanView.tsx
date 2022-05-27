@@ -21,11 +21,23 @@ const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
     );
   };
 
+  const toPrevStep = () => {
+    setStep(step - 1);
+
+    router.push(
+      { pathname: router.pathname, query: { ...router.query, step: step - 1 } },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
+  };
+
   switch (step) {
     case 0:
       return <InformationStep submitFnc={toNextStep} />;
     case 1:
-      return <AddressStep submitFnc={toNextStep} />;
+      return <AddressStep submitFnc={toNextStep} prevBtn={toPrevStep} />;
     default:
       throw new Error(`step ${step} does not exist`);
   }

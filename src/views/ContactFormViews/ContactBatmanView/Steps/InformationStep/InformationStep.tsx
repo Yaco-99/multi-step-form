@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { InformationStepProps } from "./types";
 import { InputGroup } from "../../../../../molecules/InputGroup/InputGroup";
 import isValidEmail from "../../../utils/helper";
+import { useContactBatmanStore } from "../../../../../state-machine/contact-form-machine";
 
 type TData = {
   firstname: string;
@@ -18,6 +19,8 @@ const formSchema = Joi.object({
 });
 
 const InformationStep = ({ submitFnc }: InformationStepProps): JSX.Element => {
+  const { contactInformaiton, setContactInformaiton } = useContactBatmanStore();
+
   const {
     handleSubmit,
     formState: { errors },
@@ -25,6 +28,7 @@ const InformationStep = ({ submitFnc }: InformationStepProps): JSX.Element => {
     setError,
   } = useForm<TData>({
     resolver: joiResolver(formSchema),
+    defaultValues: contactInformaiton,
   });
 
   const _handleSubmit = async (data: TData) => {
@@ -33,6 +37,8 @@ const InformationStep = ({ submitFnc }: InformationStepProps): JSX.Element => {
     if (!emailValidation) {
       return setError("email", { message: "Invalid email" });
     }
+
+    setContactInformaiton(data);
 
     submitFnc();
   };

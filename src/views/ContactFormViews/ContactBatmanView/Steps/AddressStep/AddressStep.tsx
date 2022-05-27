@@ -3,6 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { Controller, useForm } from "react-hook-form";
 import { AddressStepProps } from "./types";
 import { InputGroup } from "../../../../../molecules/InputGroup/InputGroup";
+import { useContactBatmanStore } from "../../../../../state-machine/contact-form-machine";
 
 type TData = {
   street: string;
@@ -24,16 +25,21 @@ const formSchema = Joi.object({
   city: Joi.string().required(),
 });
 
-const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
+const AddressStep = ({ submitFnc, prevBtn }: AddressStepProps): JSX.Element => {
+  const { addressInformation, setAddressInformation } = useContactBatmanStore();
+
   const {
     handleSubmit,
     formState: { errors },
     control,
   } = useForm<TData>({
     resolver: joiResolver(formSchema),
+    defaultValues: addressInformation,
   });
 
-  const _handleSubmit = () => {
+  const _handleSubmit = (data: TData) => {
+    setAddressInformation(data);
+
     submitFnc();
   };
 
@@ -104,6 +110,10 @@ const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
 
         <button type="submit">SUBMIT</button>
       </form>
+
+      <button type="button" onClick={prevBtn}>
+        Back
+      </button>
     </div>
   );
 };
