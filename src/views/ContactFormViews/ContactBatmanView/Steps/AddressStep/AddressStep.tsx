@@ -61,7 +61,7 @@ const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
         />
 
         <Controller
-          name="number"
+          name="street"
           control={control}
           render={({ field: { name, value, onChange } }): JSX.Element => (
             <InputGroup
@@ -76,7 +76,7 @@ const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
         />
 
         <Controller
-          name="number"
+          name="city"
           control={control}
           render={({ field: { name, value, onChange } }): JSX.Element => (
             <InputGroup
@@ -91,7 +91,7 @@ const AddressStep = ({ submitFnc }: AddressStepProps): JSX.Element => {
         />
 
         <Controller
-          name="number"
+          name="postalCode"
           control={control}
           render={({ field: { name, value, onChange } }): JSX.Element => (
             <InputGroup
