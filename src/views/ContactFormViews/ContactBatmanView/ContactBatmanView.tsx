@@ -1,8 +1,8 @@
 import { useState } from "react";
 import AddressStep from "./Steps/AddressStep/AddressStep";
-import { ContactFormProps } from "./types";
+import { ContactBatmanViewProps } from "./types";
 
-const ContactForm = ({}: ContactFormProps): JSX.Element => {
+const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
   const [step, setStep] = useState(0);
 
   switch (step) {
@@ -13,4 +13,4 @@ const ContactForm = ({}: ContactFormProps): JSX.Element => {
   }
 };
 
-export default ContactForm;
+export default ContactBatmanView;

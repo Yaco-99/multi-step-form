@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import ContactForm from "../views/ContactForm/ContactForm";
+import ContactBatmanView from "../views/ContactFormViews/ContactBatmanView/ContactBatmanView";
 
 const Home: NextPage = () => {
-  return <ContactForm />;
+  return <ContactBatmanView />;
 };
 
 export default Home;
