@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContactBatmanStore } from "../../../state-machine/contact-form-machine";
 import AddressStep from "./Steps/AddressStep/AddressStep";
 import InformationStep from "./Steps/InformationStep/InformationStep";
 import { ContactBatmanViewProps } from "./types";
@@ -7,10 +7,10 @@ import { ContactBatmanViewProps } from "./types";
 const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
   const router = useRouter();
 
-  const [step, setStep] = useState(0);
+  const { step, setStep } = useContactBatmanStore();
 
   const toNextStep = () => {
-    setStep((current) => current + 1);
+    setStep(step + 1);
 
     router.push(
       { pathname: router.pathname, query: { ...router.query, step: step + 1 } },
