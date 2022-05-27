@@ -1,7 +1,7 @@
 const isValidEmail = (email: string): Promise<boolean> =>
   new Promise((resolve) =>
     setTimeout(() => {
-      if (email === "axel.avaux@weinvest.be") {
+      if (email === "valid@email.be") {
         resolve(true);
       } else {
         resolve(false);
