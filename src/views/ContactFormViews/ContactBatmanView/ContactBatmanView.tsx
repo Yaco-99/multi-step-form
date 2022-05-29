@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useContactBatmanStore } from "../../../state-machine/contact-form-machine";
 import AddressStep from "./Steps/AddressStep/AddressStep";
 import InformationStep from "./Steps/InformationStep/InformationStep";
@@ -10,8 +11,6 @@ const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
   const { step, setStep } = useContactBatmanStore();
 
   const toNextStep = () => {
-    setStep(step + 1);
-
     router.push(
       { pathname: router.pathname, query: { ...router.query, step: step + 1 } },
       undefined,
@@ -22,8 +21,6 @@ const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
   };
 
   const toPrevStep = () => {
-    setStep(step - 1);
-
     router.push(
       { pathname: router.pathname, query: { ...router.query, step: step - 1 } },
       undefined,
@@ -32,6 +29,13 @@ const ContactBatmanView = ({}: ContactBatmanViewProps): JSX.Element => {
       }
     );
   };
+
+  useEffect(() => {
+    const routerStep =
+      typeof router.query.step === "string" ? +router.query.step : 0;
+
+    setStep(routerStep);
+  }, [router.query.step]);
 
   switch (step) {
     case 0:

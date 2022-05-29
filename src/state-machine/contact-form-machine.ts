@@ -21,13 +21,18 @@ type TContactBatmanStore = {
 export const useContactBatmanStore = create<TContactBatmanStore>((set) => ({
   step: 0,
   setStep: (step) => set((state) => ({ ...state, step })),
-  addressInformation: undefined,
+  addressInformation: {
+    street: "",
+    number: "",
+    postalCode: "",
+    city: "",
+  },
   setAddressInformation: (addressInformation) =>
     set((state) => ({
       ...state,
       addressInformation,
     })),
-  contactInformaiton: undefined,
+  contactInformaiton: { firstname: "", lastname: "", email: "" },
   setContactInformaiton: (contactInformaiton) =>
     set((state) => ({ ...state, contactInformaiton })),
 }));
