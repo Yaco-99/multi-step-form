@@ -4,7 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import { InformationStepProps } from "./types";
 import { InputGroup } from "../../../../../molecules/InputGroup/InputGroup";
 import isValidEmail from "../../../utils/helper";
-import { useContactBatmanStore } from "../../../../../state-machine/contact-form-machine";
+import { useContactBatmanStore } from "../../../../../stores/contact-form-store";
 
 type TData = {
   firstname: string;

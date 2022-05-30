@@ -3,7 +3,7 @@ import { joiResolver } from "@hookform/resolvers/joi";
 import { Controller, useForm } from "react-hook-form";
 import { AddressStepProps } from "./types";
 import { InputGroup } from "../../../../../molecules/InputGroup/InputGroup";
-import { useContactBatmanStore } from "../../../../../state-machine/contact-form-machine";
+import { useContactBatmanStore } from "../../../../../stores/contact-form-store";
 
 type TData = {
   street: string;

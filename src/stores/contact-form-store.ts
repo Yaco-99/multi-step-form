@@ -20,7 +20,7 @@ type TContactBatmanStore = {
 
 export const useContactBatmanStore = create<TContactBatmanStore>((set) => ({
   step: 0,
-  setStep: (step) => set((state) => ({ ...state, step })),
+  setStep: (step) => set({ step }),
   addressInformation: {
     street: "",
     number: "",
@@ -28,11 +28,9 @@ export const useContactBatmanStore = create<TContactBatmanStore>((set) => ({
     city: "",
   },
   setAddressInformation: (addressInformation) =>
-    set((state) => ({
-      ...state,
+    set({
       addressInformation,
-    })),
+    }),
   contactInformaiton: { firstname: "", lastname: "", email: "" },
-  setContactInformaiton: (contactInformaiton) =>
-    set((state) => ({ ...state, contactInformaiton })),
+  setContactInformaiton: (contactInformaiton) => set({ contactInformaiton }),
 }));
